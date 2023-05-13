@@ -1,3 +1,7 @@
+''' based on https://gist.github.com/anubhavshrimal/75f6183458db8c453306f93521e93d37
+GO TO THE LINE 1219 ^^
+'''
+
 country_list = [
     {
         "name": "Afghanistan",
@@ -1213,3 +1217,31 @@ country_list = [
 
 COUNTRY = [(i['code'], i['name']) for i in country_list]
 DIAL = [(i['code'], i['dial_code']) for i in country_list]
+
+'''
+I'm using COUNTRY AND DIAL with django
+look country filed and format_phone_number method
+
+class Thinker(AbstractUser):
+    phone = models.CharField(max_length=25, verbose_name="Téléphone")
+    email = models.EmailField(unique=True)
+    company = models.CharField(max_length=500, blank=True, verbose_name="Entreprise")
+    country = models.CharField(max_length=100, choices=countryphonelist.COUNTRY, verbose_name="Pays")
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "phone", 'first_name', 'last_name', 'country']
+
+    objects = ThinkerManager()
+
+    def format_phone_number(self):
+        if not self.phone.startswith('+'):
+            phone_number = self.phone.lstrip('0')
+            for i in countryphonelist.DIAL:
+                if i[0] == self.country:
+                    dial_code = i[1]
+                    phone_number = dial_code + phone_number
+                    self.phone = phone_number
+
+                    return self.phone
+        return self.phone
+    '''
